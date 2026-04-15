@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="CGI Script Generator - Generate CGI scripts for web form processing">
+    <meta name="theme-color" content="#2563eb">
+    <title>🖥️ CGI Script Generator - Mini Tools</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="tool-header">
+        <span class="tool-header-icon">🖥️</span>
+        <h1>CGI Script Generator</h1>
+    </header>
+
+    <main class="tool-container">
+        <div class="tool-card">
+            <p class="text-muted mb-2">Generate CGI scripts to process web form data with validation and HTML response.</p>
+
+            <div id="tool-content">
+                <!-- ====== TOOL CONTENT START ====== -->
+
+                <!-- Script Language -->
+                <div class="form-group">
+                    <label class="form-label" for="script-lang">Script Language</label>
+                    <select id="script-lang" class="form-select">
+                        <option value="python">Python 3</option>
+                        <option value="perl">Perl</option>
+                        <option value="bash">Bash</option>
+                        <option value="php">PHP</option>
+                    </select>
+                </div>
+
+                <!-- Form Action URL -->
+                <div class="form-group">
+                    <label class="form-label" for="form-action">Form Action URL</label>
+                    <input type="text" id="form-action" class="form-input" placeholder="/cgi-bin/process.cgi" value="/cgi-bin/process.cgi">
+                </div>
+
+                <!-- Method -->
+                <div class="form-group">
+                    <label class="form-label">HTTP Method</label>
+                    <div class="radio-group">
+                        <label class="radio-inline">
+                            <input type="radio" name="method" value="GET"> GET
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="method" value="POST" checked> POST
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Form Fields -->
+                <div class="form-group">
+                    <label class="form-label">Form Fields</label>
+                    <div id="fields-container">
+                        <div class="field-row" data-index="0">
+                            <input type="text" class="form-input field-name" placeholder="Field name" value="username">
+                            <select class="form-select field-type">
+                                <option value="text">Text</option>
+                                <option value="email">Email</option>
+                                <option value="number">Number</option>
+                                <option value="textarea">Textarea</option>
+                                <option value="select">Select</option>
+                                <option value="checkbox">Checkbox</option>
+                            </select>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" class="field-required" checked> Required
+                            </label>
+                            <button class="btn-remove-field" title="Remove">&times;</button>
+                        </div>
+                        <div class="field-row" data-index="1">
+                            <input type="text" class="form-input field-name" placeholder="Field name" value="email">
+                            <select class="form-select field-type">
+                                <option value="text">Text</option>
+                                <option value="email" selected>Email</option>
+                                <option value="number">Number</option>
+                                <option value="textarea">Textarea</option>
+                                <option value="select">Select</option>
+                                <option value="checkbox">Checkbox</option>
+                            </select>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" class="field-required" checked> Required
+                            </label>
+                            <button class="btn-remove-field" title="Remove">&times;</button>
+                        </div>
+                        <div class="field-row" data-index="2">
+                            <input type="text" class="form-input field-name" placeholder="Field name" value="message">
+                            <select class="form-select field-type">
+                                <option value="text">Text</option>
+                                <option value="email">Email</option>
+                                <option value="number">Number</option>
+                                <option value="textarea" selected>Textarea</option>
+                                <option value="select">Select</option>
+                                <option value="checkbox">Checkbox</option>
+                            </select>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" class="field-required"> Required
+                            </label>
+                            <button class="btn-remove-field" title="Remove">&times;</button>
+                        </div>
+                    </div>
+                    <button id="add-field-btn" class="btn btn-secondary btn-sm mt-1">+ Add Field</button>
+                </div>
+
+                <!-- Redirect URLs -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="success-url">Success Redirect URL</label>
+                        <input type="text" id="success-url" class="form-input" placeholder="/success.html" value="/success.html">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="error-url">Error Page URL</label>
+                        <input type="text" id="error-url" class="form-input" placeholder="/error.html" value="/error.html">
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <div class="btn-group">
+                    <button id="generate-btn" class="btn btn-primary btn-block">🖥️ Generate CGI Script</button>
+                </div>
+
+                <!-- Output Tabs -->
+                <div class="form-group mt-2">
+                    <label class="form-label">Generated Code</label>
+                    <div class="output-tabs">
+                        <button class="tab-btn active" data-tab="cgi">CGI Script</button>
+                        <button class="tab-btn" data-tab="form">HTML Form</button>
+                    </div>
+                    <div class="output-content">
+                        <pre id="output-cgi" class="code-block tab-content active"></pre>
+                        <pre id="output-form" class="code-block tab-content"></pre>
+                    </div>
+                    <div class="btn-group">
+                        <button id="copy-code-btn" class="btn btn-secondary">📋 Copy Code</button>
+                        <button id="download-btn" class="btn btn-secondary">💾 Download Script</button>
+                    </div>
+                </div>
+
+                <!-- ====== TOOL CONTENT END ====== -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Dibuat dengan ❤️ - By : Andi Almafhum</p> |
+        <div class="footer-actions">
+            <a class="footer-btn footer-github" href="https://github.com/mafhum99" target="_blank" rel="noopener noreferrer">
+                🐙 GitHub
+            </a>
+            <a class="footer-btn footer-saweria" href="https://saweria.co/mafhum" target="_blank" rel="noopener noreferrer">
+                ☕ Support me
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

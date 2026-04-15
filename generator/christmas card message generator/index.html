@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Christmas Card Message Generator - Generate personalized Christmas messages">
+    <meta name="theme-color" content="#dc2626">
+    <title>🎄 Christmas Card Message Generator - Mini Tools</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="tool-header">
+        <span class="tool-header-icon">🎄</span>
+        <h1>Christmas Card Message Generator</h1>
+    </header>
+
+    <main class="tool-container">
+        <div class="tool-card">
+            <p class="text-muted mb-2">Generate personalized Christmas messages for family, friends, coworkers, and more.</p>
+
+            <div id="tool-content">
+                <!-- ====== TOOL CONTENT START ====== -->
+
+                <!-- Sender & Recipient -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="sender-name">Your Name (Sender)</label>
+                        <input type="text" id="sender-name" class="form-input" placeholder="Your name" value="John">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="recipient-name">Recipient Name</label>
+                        <input type="text" id="recipient-name" class="form-input" placeholder="Recipient name" value="Sarah">
+                    </div>
+                </div>
+
+                <!-- Category -->
+                <div class="form-group">
+                    <label class="form-label" for="category">Category</label>
+                    <select id="category" class="form-select">
+                        <option value="family">👨‍👩‍👧‍👦 Family</option>
+                        <option value="friends">👫 Friends</option>
+                        <option value="coworkers">💼 Coworkers</option>
+                        <option value="clients">🤝 Clients / Customers</option>
+                        <option value="teachers">📚 Teachers</option>
+                        <option value="romantic">❤️ Romantic</option>
+                    </select>
+                </div>
+
+                <!-- Tone -->
+                <div class="form-group">
+                    <label class="form-label" for="tone">Tone</label>
+                    <select id="tone" class="form-select">
+                        <option value="warm">🤗 Warm & Friendly</option>
+                        <option value="funny">😄 Funny</option>
+                        <option value="religious">🙏 Religious</option>
+                        <option value="professional">👔 Professional</option>
+                        <option value="heartfelt">💝 Heartfelt</option>
+                    </select>
+                </div>
+
+                <!-- Options -->
+                <div class="form-group">
+                    <label class="checkbox-inline checkbox-inline-large">
+                        <input type="checkbox" id="include-quote" checked> Include Christmas Quote
+                    </label>
+                </div>
+
+                <!-- Personal Message -->
+                <div class="form-group">
+                    <label class="form-label" for="personal-message">Personal Message (Optional)</label>
+                    <textarea id="personal-message" class="form-textarea" rows="2" placeholder="Add a personal note..."></textarea>
+                </div>
+
+                <!-- Number of Messages -->
+                <div class="form-group">
+                    <label class="form-label" for="message-count">Number of Messages (1-10)</label>
+                    <input type="number" id="message-count" class="form-input" min="1" max="10" value="3">
+                </div>
+
+                <!-- Generate Button -->
+                <div class="btn-group">
+                    <button id="generate-btn" class="btn btn-primary btn-block">🎄 Generate Messages</button>
+                </div>
+
+                <!-- Generated Messages -->
+                <div class="form-group mt-2">
+                    <label class="form-label">Generated Messages</label>
+                    <div id="messages-container"></div>
+                </div>
+
+                <div class="btn-group">
+                    <button id="regenerate-btn" class="btn btn-secondary">🔄 Regenerate</button>
+                    <button id="copy-all-btn" class="btn btn-secondary">📋 Copy All</button>
+                </div>
+
+                <!-- ====== TOOL CONTENT END ====== -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Dibuat dengan ❤️ - By : Andi Almafhum</p> |
+        <div class="footer-actions">
+            <a class="footer-btn footer-github" href="https://github.com/mafhum99" target="_blank" rel="noopener noreferrer">
+                🐙 GitHub
+            </a>
+            <a class="footer-btn footer-saweria" href="https://saweria.co/mafhum" target="_blank" rel="noopener noreferrer">
+                ☕ Support me
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

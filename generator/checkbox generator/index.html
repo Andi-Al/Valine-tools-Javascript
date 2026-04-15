@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Checkbox Generator - Generate custom checkbox HTML with styling and JavaScript logic">
+    <meta name="theme-color" content="#2563eb">
+    <title>☑️ Checkbox Generator - Mini Tools</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="tool-header">
+        <span class="tool-header-icon">☑️</span>
+        <h1>Checkbox Generator</h1>
+    </header>
+
+    <main class="tool-container">
+        <div class="tool-card">
+            <p class="text-muted mb-2">Generate custom checkbox HTML with styling, "Select All" functionality, dan max selectable limit.</p>
+
+            <div id="tool-content">
+                <!-- ====== TOOL CONTENT START ====== -->
+                
+                <!-- Group Name -->
+                <div class="form-group">
+                    <label class="form-label" for="group-name">Group Name</label>
+                    <input type="text" id="group-name" class="form-input" placeholder="e.g., preferences, options" value="myCheckbox">
+                </div>
+
+                <!-- Checkbox Items -->
+                <div class="form-group">
+                    <label class="form-label">Checkbox Items</label>
+                    <div id="items-container">
+                        <div class="item-row" data-index="0">
+                            <input type="text" class="form-input item-label" placeholder="Label text" value="Option 1">
+                            <input type="text" class="form-input item-value" placeholder="Value (optional)">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" class="item-checked"> Checked
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" class="item-disabled"> Disabled
+                            </label>
+                            <button class="btn-remove-item" title="Remove item">&times;</button>
+                        </div>
+                        <div class="item-row" data-index="1">
+                            <input type="text" class="form-input item-label" placeholder="Label text" value="Option 2">
+                            <input type="text" class="form-input item-value" placeholder="Value (optional)">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" class="item-checked"> Checked
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" class="item-disabled"> Disabled
+                            </label>
+                            <button class="btn-remove-item" title="Remove item">&times;</button>
+                        </div>
+                        <div class="item-row" data-index="2">
+                            <input type="text" class="form-input item-label" placeholder="Label text" value="Option 3">
+                            <input type="text" class="form-input item-value" placeholder="Value (optional)">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" class="item-checked"> Checked
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" class="item-disabled"> Disabled
+                            </label>
+                            <button class="btn-remove-item" title="Remove item">&times;</button>
+                        </div>
+                    </div>
+                    <button id="add-item-btn" class="btn btn-secondary btn-sm mt-1">+ Add Item</button>
+                </div>
+
+                <!-- Style Options -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="checkbox-style">Style</label>
+                        <select id="checkbox-style" class="form-select">
+                            <option value="default">Default</option>
+                            <option value="toggle">Toggle Switch</option>
+                            <option value="card">Card Select</option>
+                            <option value="custom-icon">Custom Icon</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="checkbox-theme">Theme Color</label>
+                        <input type="color" id="checkbox-theme" class="form-input-color" value="#2563eb">
+                    </div>
+                </div>
+
+                <!-- Layout Options -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="checkbox-layout">Layout</label>
+                        <select id="checkbox-layout" class="form-select">
+                            <option value="vertical">Vertical</option>
+                            <option value="horizontal">Horizontal</option>
+                            <option value="grid">Grid</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="grid-columns-group">
+                        <label class="form-label" for="grid-columns">Grid Columns</label>
+                        <input type="number" id="grid-columns" class="form-input" min="2" max="6" value="3">
+                    </div>
+                </div>
+
+                <!-- Additional Options -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="checkbox-inline checkbox-inline-large">
+                            <input type="checkbox" id="select-all-option"> Include "Select All" Button
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="max-selectable">Max Selectable (0 = unlimited)</label>
+                    <input type="number" id="max-selectable" class="form-input" min="0" value="0">
+                </div>
+
+                <!-- Custom Icon Input (shown when style = custom-icon) -->
+                <div class="form-group hidden" id="custom-icon-group">
+                    <label class="form-label" for="custom-icon">Custom Icon (emoji or character)</label>
+                    <input type="text" id="custom-icon" class="form-input" placeholder="e.g., ✓, ✅, ⭐" value="✓">
+                </div>
+
+                <!-- Generate Button -->
+                <div class="btn-group">
+                    <button id="generate-btn" class="btn btn-primary btn-block">☑️ Generate Code</button>
+                </div>
+
+                <!-- Preview Section -->
+                <div class="form-group mt-2">
+                    <label class="form-label">Live Preview</label>
+                    <div id="preview-container" class="preview-box"></div>
+                </div>
+
+                <!-- Output Tabs -->
+                <div class="form-group mt-2">
+                    <label class="form-label">Generated Code</label>
+                    <div class="output-tabs">
+                        <button class="tab-btn active" data-tab="html">HTML</button>
+                        <button class="tab-btn" data-tab="css">CSS</button>
+                        <button class="tab-btn" data-tab="js">JavaScript</button>
+                        <button class="tab-btn" data-tab="full">Full Code</button>
+                    </div>
+                    <div class="output-content">
+                        <pre id="output-html" class="code-block tab-content active"></pre>
+                        <pre id="output-css" class="code-block tab-content"></pre>
+                        <pre id="output-js" class="code-block tab-content"></pre>
+                        <pre id="output-full" class="code-block tab-content"></pre>
+                    </div>
+                    <div class="btn-group">
+                        <button id="copy-code-btn" class="btn btn-secondary">📋 Copy Code</button>
+                    </div>
+                </div>
+
+                <!-- ====== TOOL CONTENT END ====== -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Dibuat dengan ❤️ - By : Andi Almafhum</p> |
+        <div class="footer-actions">
+            <a class="footer-btn footer-github" href="https://github.com/mafhum99" target="_blank" rel="noopener noreferrer">
+                🐙 GitHub
+            </a>
+            <a class="footer-btn footer-saweria" href="https://saweria.co/mafhum" target="_blank" rel="noopener noreferrer">
+                ☕ Support me
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

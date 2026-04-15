@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Chatbot Script Generator - Generate embeddable chatbot widget for websites">
+    <meta name="theme-color" content="#2563eb">
+    <title>🤖 Chatbot Script Generator - Mini Tools</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="tool-header">
+        <span class="tool-header-icon">🤖</span>
+        <h1>Chatbot Script Generator</h1>
+    </header>
+
+    <main class="tool-container">
+        <div class="tool-card">
+            <p class="text-muted mb-2">Generate a fully functional chatbot widget with conversation flows, typing animation, and quick reply buttons.</p>
+
+            <div id="tool-content">
+                <!-- ====== TOOL CONTENT START ====== -->
+
+                <!-- Bot Name -->
+                <div class="form-group">
+                    <label class="form-label" for="bot-name">Bot Name</label>
+                    <input type="text" id="bot-name" class="form-input" placeholder="MyChatBot" value="MyChatBot">
+                </div>
+
+                <!-- Greeting Message -->
+                <div class="form-group">
+                    <label class="form-label" for="greeting">Greeting Message</label>
+                    <input type="text" id="greeting" class="form-input" placeholder="Hello! How can I help you?" value="Hello! How can I help you today?">
+                </div>
+
+                <!-- Conversation Flow Builder -->
+                <div class="form-group">
+                    <label class="form-label">Conversation Flows (Trigger → Response)</label>
+                    <div id="flows-container">
+                        <div class="flow-row" data-index="0">
+                            <input type="text" class="form-input flow-trigger" placeholder="Trigger keywords (comma separated)" value="hello, hi, hey">
+                            <textarea class="form-textarea flow-response" rows="2" placeholder="Bot response message">Hello! 👋 Welcome! How can I assist you today?</textarea>
+                            <button class="btn-remove-flow" title="Remove">&times;</button>
+                        </div>
+                        <div class="flow-row" data-index="1">
+                            <input type="text" class="form-input flow-trigger" placeholder="Trigger keywords (comma separated)" value="pricing, price, cost">
+                            <textarea class="form-textarea flow-response" rows="2" placeholder="Bot response message">Our pricing starts at $9.99/month. Would you like to know more about our plans?</textarea>
+                            <button class="btn-remove-flow" title="Remove">&times;</button>
+                        </div>
+                        <div class="flow-row" data-index="2">
+                            <input type="text" class="form-input flow-trigger" placeholder="Trigger keywords (comma separated)" value="contact, support, help">
+                            <textarea class="form-textarea flow-response" rows="2" placeholder="Bot response message">You can reach our support team at support@example.com or call us at +1-234-567-8900.</textarea>
+                            <button class="btn-remove-flow" title="Remove">&times;</button>
+                        </div>
+                    </div>
+                    <button id="add-flow-btn" class="btn btn-secondary btn-sm mt-1">+ Add Flow</button>
+                </div>
+
+                <!-- Fallback Response -->
+                <div class="form-group">
+                    <label class="form-label" for="fallback">Fallback Response (no match)</label>
+                    <input type="text" id="fallback" class="form-input" placeholder="Sorry, I didn't understand that..." value="I'm sorry, I didn't understand that. Can you rephrase your question?">
+                </div>
+
+                <!-- Widget Options -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="widget-position">Widget Position</label>
+                        <select id="widget-position" class="form-select">
+                            <option value="bottom-right">Bottom Right</option>
+                            <option value="bottom-left">Bottom Left</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="widget-theme">Theme Color</label>
+                        <input type="color" id="widget-theme" class="form-input-color" value="#2563eb">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="input-placeholder">User Input Placeholder</label>
+                    <input type="text" id="input-placeholder" class="form-input" placeholder="Type a message..." value="Type a message...">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="checkbox-inline checkbox-inline-large">
+                            <input type="checkbox" id="typing-animation" checked> Typing Animation
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="bot-language">Language</label>
+                        <select id="bot-language" class="form-select">
+                            <option value="en">English</option>
+                            <option value="id">Bahasa Indonesia</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <div class="btn-group">
+                    <button id="generate-btn" class="btn btn-primary btn-block">🤖 Generate Chatbot</button>
+                </div>
+
+                <!-- Preview -->
+                <div class="form-group mt-2">
+                    <label class="form-label">Live Preview</label>
+                    <div id="preview-container" class="preview-box"></div>
+                </div>
+
+                <!-- Output Tabs -->
+                <div class="form-group mt-2">
+                    <label class="form-label">Generated Code</label>
+                    <div class="output-tabs">
+                        <button class="tab-btn active" data-tab="embed">Embed Code</button>
+                        <button class="tab-btn" data-tab="html">HTML</button>
+                        <button class="tab-btn" data-tab="full">Full Page</button>
+                    </div>
+                    <div class="output-content">
+                        <pre id="output-embed" class="code-block tab-content active"></pre>
+                        <pre id="output-html" class="code-block tab-content"></pre>
+                        <pre id="output-full" class="code-block tab-content"></pre>
+                    </div>
+                    <div class="btn-group">
+                        <button id="copy-code-btn" class="btn btn-secondary">📋 Copy Code</button>
+                        <button id="download-btn" class="btn btn-secondary">💾 Download .html</button>
+                    </div>
+                </div>
+
+                <!-- ====== TOOL CONTENT END ====== -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Dibuat dengan ❤️ - By : Andi Almafhum</p> |
+        <div class="footer-actions">
+            <a class="footer-btn footer-github" href="https://github.com/mafhum99" target="_blank" rel="noopener noreferrer">
+                🐙 GitHub
+            </a>
+            <a class="footer-btn footer-saweria" href="https://saweria.co/mafhum" target="_blank" rel="noopener noreferrer">
+                ☕ Support me
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

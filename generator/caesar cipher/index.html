@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Caesar Cipher - Encrypt and decrypt text using Caesar cipher with brute-force analysis">
+    <meta name="theme-color" content="#2563eb">
+    <title>🔐 Caesar Cipher - Mini Tools</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="tool-header">
+        <span class="tool-header-icon">🔐</span>
+        <h1>Caesar Cipher</h1>
+    </header>
+
+    <main class="tool-container">
+        <div class="tool-card">
+            <p class="text-muted mb-2">Encrypt or decrypt text using Caesar cipher shift. Includes brute-force analysis for all 25 shifts.</p>
+
+            <div id="tool-content">
+                <!-- ====== TOOL CONTENT START ====== -->
+
+                <!-- Input Text -->
+                <div class="form-group">
+                    <label class="form-label" for="input-text">Input Text</label>
+                    <textarea id="input-text" class="form-textarea" rows="4" placeholder="Enter text to encrypt or decrypt..."></textarea>
+                </div>
+
+                <!-- Shift Value -->
+                <div class="form-group">
+                    <label class="form-label" for="shift-value">Shift (1-25)</label>
+                    <input type="number" id="shift-value" class="form-input" min="1" max="25" value="3">
+                </div>
+
+                <!-- Mode -->
+                <div class="form-group">
+                    <label class="form-label">Mode</label>
+                    <div class="radio-group">
+                        <label class="radio-inline">
+                            <input type="radio" name="mode" value="encrypt" checked> 🔒 Encrypt
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="mode" value="decrypt"> 🔓 Decrypt
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Options -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="checkbox-inline checkbox-inline-large">
+                            <input type="checkbox" id="preserve-case" checked> Preserve Case
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-inline checkbox-inline-large">
+                            <input type="checkbox" id="preserve-non-alpha" checked> Preserve Non-Alpha
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Alphabet -->
+                <div class="form-group">
+                    <label class="form-label" for="alphabet">Alphabet</label>
+                    <select id="alphabet" class="form-select">
+                        <option value="english">English (A-Z, 26 letters)</option>
+                        <option value="extended">Extended ASCII (256 characters)</option>
+                    </select>
+                </div>
+
+                <!-- Generate Button -->
+                <div class="btn-group">
+                    <button id="process-btn" class="btn btn-primary btn-block">🔐 Encrypt / Decrypt</button>
+                </div>
+
+                <!-- Result -->
+                <div class="form-group mt-2">
+                    <label class="form-label">Result</label>
+                    <div class="result-box" id="result-box">
+                        <pre id="output-text">-</pre>
+                    </div>
+                    <div class="btn-group">
+                        <button id="copy-btn" class="btn btn-secondary">📋 Copy Result</button>
+                        <button id="swap-btn" class="btn btn-secondary">🔄 Swap Input/Output</button>
+                    </div>
+                </div>
+
+                <!-- Brute Force Table -->
+                <div class="form-group mt-2">
+                    <label class="form-label">Brute Force Analysis (All 25 Shifts)</label>
+                    <div class="brute-force-container" id="brute-force-table"></div>
+                </div>
+
+                <!-- ====== TOOL CONTENT END ====== -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Dibuat dengan ❤️ - By : Andi Almafhum</p> |
+        <div class="footer-actions">
+            <a class="footer-btn footer-github" href="https://github.com/mafhum99" target="_blank" rel="noopener noreferrer">
+                🐙 GitHub
+            </a>
+            <a class="footer-btn footer-saweria" href="https://saweria.co/mafhum" target="_blank" rel="noopener noreferrer">
+                ☕ Support me
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
