@@ -7,6 +7,28 @@
     <meta name="theme-color" content="#2563eb">
     <title>📅 Period Tracker Calculator - Mini Tools</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .period-form { margin-bottom: 1.5rem; }
+        .period-form .form-group { margin-bottom: 1rem; }
+        .period-results { background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin-top: 1rem; }
+        .result-item { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0; }
+        .result-item:last-child { border-bottom: none; }
+        .result-label { font-weight: 600; color: #475569; }
+        .result-value { color: #1e293b; font-weight: 500; }
+        .calendar-container { margin-top: 1rem; }
+        .calendar-header { text-align: center; font-weight: 600; margin-bottom: 0.5rem; color: #1e293b; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+        .calendar-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; border-radius: 4px; position: relative; min-height: 30px; }
+        .calendar-day.header { font-weight: 600; color: #64748b; }
+        .calendar-day.menstruation { background-color: #ef4444; color: white; }
+        .calendar-day.fertile { background-color: #22c55e; color: white; }
+        .calendar-day.ovulation { background-color: #a855f7; color: white; }
+        .calendar-day.today { border: 2px solid #2563eb; }
+        .legend { display: flex; gap: 1rem; margin-top: 0.5rem; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; }
+        .legend-color { width: 12px; height: 12px; border-radius: 2px; }
+        .error-message { color: #ef4444; font-size: 0.875rem; margin-top: 0.5rem; }
+    </style>
 </head>
 <body>
     <header class="tool-header">
@@ -17,26 +39,41 @@
     <main class="tool-container">
         <div class="tool-card">
             <p class="text-muted mb-2">Track and predict menstrual cycles</p>
-            
+
             <div id="tool-content">
-                <!-- Tool content goes here -->
-                <div class="form-group">
-                    <label class="form-label" for="input">Input</label>
-                    <input type="text" id="input" class="form-input" placeholder="Enter value...">
+                <div class="period-form">
+                    <div class="form-group">
+                        <label class="form-label" for="lastPeriodDate">First Day of Last Period</label>
+                        <input type="date" id="lastPeriodDate" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="cycleLength">Average Cycle Length (days)</label>
+                        <input type="number" id="cycleLength" class="form-input" min="20" max="45" value="28" placeholder="28">
+                        <small class="text-muted">Range: 20-45 days</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="periodDuration">Period Duration (days)</label>
+                        <input type="number" id="periodDuration" class="form-input" min="2" max="7" value="5" placeholder="5">
+                        <small class="text-muted">Range: 2-7 days</small>
+                    </div>
                 </div>
-                
+
                 <div class="btn-group">
                     <button id="calculate" class="btn btn-primary btn-block">Calculate</button>
                     <button id="clear" class="btn btn-secondary">Clear</button>
                 </div>
-                
-                <div class="result-box" id="result">
-                    <div class="result-label">Result</div>
-                    <div id="output">-</div>
+
+                <div id="errorBox" class="error-message" style="display: none;"></div>
+
+                <div class="result-box" id="result" style="display: none;">
+                    <div class="result-label">Results</div>
+                    <div id="output"></div>
                 </div>
-                
-                <div class="btn-group">
-                    <button id="copy" class="btn btn-secondary">📋 Copy Result</button>
+
+                <div class="btn-group" id="copyBtnGroup" style="display: none;">
+                    <button id="copy" class="btn btn-secondary">📋 Copy Results</button>
                 </div>
             </div>
         </div>
