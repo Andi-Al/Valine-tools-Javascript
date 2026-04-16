@@ -318,11 +318,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const results = [];
 
         let category = 'general';
-        if (input.includes('self') || input.includes('love') || input.includes('worth')) category = 'self';
-        else if (input.includes('confid') || input.includes('bold') || input.includes('brave')) category = 'confidence';
-        else if (input.includes('success') || input.includes('achiev') || input.includes('goal')) category = 'success';
-        else if (input.includes('health') || input.includes('fitness') || input.includes('body')) category = 'health';
-        else if (input.includes('relationship') || input.includes('friend') || input.includes('love')) category = 'relationships';
+        // Check relationships FIRST before love to avoid overlap
+        if (input.includes('relationship') || input.includes('friend') || input.includes('partner') || input.includes('dating')) {
+            category = 'relationships';
+        }
+        else if (input.includes('self') || input.includes('worth') || input.includes('accept')) {
+            category = 'self';
+        }
+        else if (input.includes('confid') || input.includes('bold') || input.includes('brave')) {
+            category = 'confidence';
+        }
+        else if (input.includes('success') || input.includes('achiev') || input.includes('goal')) {
+            category = 'success';
+        }
+        else if (input.includes('health') || input.includes('fitness') || input.includes('body')) {
+            category = 'health';
+        }
+        else if (input.includes('love')) {
+            category = 'self';
+        }
 
         const pool = affirmations[category];
         const count = 5;
@@ -331,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
             results.push(`${i + 1}. ${shuffled[i]}`);
         }
 
-        outputEl.innerHTML = `<h3>Your Daily Affirmations</h3>\n${results.join('\n')}`;
+        outputEl.innerHTML = `<h3>Your Daily Affirmations</h3>\n${results.join('<br>')}`;
     }
 
     function clear() {
@@ -345,7 +359,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (copyBtn) {
         copyBtn.addEventListener('click', () => {
-            copyToClipboard(outputEl.textContent);
+            // Use innerHTML to preserve formatting in copy, matching what's displayed
+            const textToCopy = outputEl.innerHTML.replace(/<br>/g, '\n').replace(/<h3>/g, '').replace(/<\/h3>/g, '');
+            copyToClipboard(textToCopy);
         });
     }
 
